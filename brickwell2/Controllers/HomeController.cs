@@ -6,16 +6,16 @@ namespace brickwell2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ILegoRepository _repo;
+        public HomeController(ILegoRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var viewStuff = _repo.Products.ToList();
+            return View(viewStuff);
         }
 
         public IActionResult Privacy()

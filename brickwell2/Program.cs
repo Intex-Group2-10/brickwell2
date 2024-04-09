@@ -1,4 +1,5 @@
 using brickwell2.Data;
+using brickwell2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +15,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<LegoDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:LegoConnection"]);
+});
+
 var services = builder.Services;
 var configuration = builder.Configuration;
 
@@ -22,6 +28,8 @@ services.AddAuthentication().AddGoogle(googleOptions =>
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
 });
+
+builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
 
 var app = builder.Build();
 
