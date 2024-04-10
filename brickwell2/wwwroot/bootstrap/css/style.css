@@ -20,7 +20,8 @@ body {
   line-height: 28px;
   color: #000000;
   font-size: 14px;
-  background-color: white; }
+  background-color: white;
+  padding-top: 75px; /* Adjust the padding to match the height of your nav bar */}
 
 a {
   text-decoration: none;
@@ -30,7 +31,7 @@ a {
   color: #2f2f2f;
   text-decoration: underline; }
   a:hover {
-    color: #2f2f2f;
+    color: #FEC107;
     text-decoration: none; }
   a.more {
     font-weight: 600; }
@@ -41,13 +42,19 @@ a {
   }
   .nav-link {
     color: #000;
-    opacity: 100%;
   }
 
 .custom-navbar {
   background: white !important;
-  padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-top: 12px;
+  padding-bottom: 12px;
+  top: 0;
+  /*left: 0;*/
+  /*right: 0;*/
+  position: fixed;
+  width: 100%;
+  z-index: 1000; /* Ensure the nav stays on top */
+  box-shadow: 0px 2px 4px rgba(254, 193, 7, 0.3); /* Add drop shadow */ }
   .custom-navbar .navbar-toggler {
     border-color: transparent; }
     .custom-navbar .navbar-toggler:active, .custom-navbar .navbar-toggler:focus {
@@ -61,7 +68,7 @@ a {
   .custom-navbar .custom-navbar-nav li a {
     font-weight: 500;
     color: #000 !important;
-    opacity: .5;
+    opacity: 1;
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
     transition: .3s all ease;
@@ -103,6 +110,11 @@ a {
       margin-right: 0px; }
       .custom-navbar .custom-navbar-cta li:first-child {
         margin-right: 20px; }
+.custom-navbar .custom-navbar-nav {
+  display: flex;
+  align-items: center; /* Center vertically */}
+.custom-navbar .nav-item {
+  margin: 0 15px; /* Adjust spacing as needed */}
 
 .hero {
   background: #FFF6C9;

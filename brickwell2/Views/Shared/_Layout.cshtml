@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="~/favicon.ico">
 </head>
 
-<body>
+
 <header>
     <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
         <div class="container">
@@ -35,7 +35,7 @@
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
                 </li>
                 <li class="nav-item @(Context.Request.Path == "/Home/Cart" ? "active" : "")">
-                    <a class="nav-link" href="/Home/Cart"><img src="~/images/legocart.png" style="width: 45px;"> Cart</a>
+                    <a class="nav-link" href="/Home/Cart"><img src="~/images/legocart.png" style="width: 45px;"> Cart()</a>
                 </li>
                 <li class="nav-item @(Context.Request.Path == "/Identity/Account/Login" ? "active" : "")">
                     <a class="nav-link" asp-area="Identity" asp-page="/Account/Login"><img src="~/images/legohead.png" style="width: 48px;"></a>
@@ -45,6 +45,7 @@
         </div>
     </nav>
 </header>
+<body>
 <div>@RenderBody()</div>
 
 <!-- Start Footer Section -->
