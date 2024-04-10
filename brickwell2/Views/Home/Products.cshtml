@@ -1,19 +1,18 @@
 @{
-
+    ViewData["Title"] = "Shop";
 }
 
-@model IQueryable<Product>
+@model PaginationListViewModel
 
     <h1>Shop our products</h1>
 
-    @foreach (Product p in Model)
+
+    @foreach (Product prod in Model.Products)
     {
-        <img src="@p.ImgLink" alt="@p.Name" style="width: 200px; height: auto;" /> <!-- Adjust the width as needed -->
-        <h3>@Html.Raw(p.Name.Replace("LEGO¬Æ", "LEGO&reg;").Replace("‚Ñ¢", "&trade;"))</h3>
-        <h6>$@p.Price</h6>
+        <partial name="ProductSummary" model="prod" />
     }
 
 
-    <a asp-controller="home" asp-action="Products" asp-route-pageNum="1">1</a>
-    <a asp-controller="home" asp-action="Products" asp-route-pageNum="2">2</a>
-    <a asp-controller="home" asp-action="Products" asp-route-pageNum="3">3</a>
+<div page-model="@Model.PaginationInfo" page-action="Products" page-class-enabled="true" page-class="btn"
+     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" 
+    page-url-productCategory="@Model.CurrentCategory" class="btn-group pull-right m-1"></div>

@@ -19,10 +19,8 @@ namespace brickwell2.Controllers
 
         public IActionResult Index()
         {
-            var viewStuff = _repo.Products.ToList();
-            return View(viewStuff);
+            return View();
         }
-
 
         public IActionResult Privacy()
         {
@@ -49,20 +47,27 @@ namespace brickwell2.Controllers
             return View();
         }
         
-        public IActionResult Products(int pageNum)
+        public IActionResult Products(int pageNum, string? productCategory)
         {
-            return View();
-        }
-        public IActionResult Profile()
-        {
-            return View();
-        }
-
             int pageSize = 3;
 
-            var productData = _repo.Products;
+            var productObject = new PaginationListViewModel
+            {
+                Products = _repo.Products
+                    .Where(x => x.Category == productCategory || productCategory == null)
+                    .OrderBy(x => x.Name)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
 
-            return View(productData);
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ProductsPerPage = pageSize,
+                    TotalProducts = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+                },
+
+            };
+            return View(productObject);
         }
     }
 }
