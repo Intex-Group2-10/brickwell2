@@ -1,6 +1,7 @@
 using brickwell2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using brickwell2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace brickwell2.Controllers
@@ -19,6 +20,7 @@ namespace brickwell2.Controllers
             var viewStuff = _repo.Products.ToList();
             return View(viewStuff);
         }
+
 
         public IActionResult Privacy()
         {
