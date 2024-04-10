@@ -9,8 +9,13 @@ body {
   overflow-x: hidden;
   position: relative; }
 
+@font-face {
+  font-family: 'League Spartan';
+  src: url('fonts/leaguespartan-bold.woff') format('woff');
+}
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'League Spartan', sans-serif;
   font-weight: 400;
   line-height: 28px;
   color: #6a6a6a;
@@ -96,7 +101,7 @@ a {
         margin-right: 20px; }
 
 .hero {
-  background: #3b5d50;
+  background: #FFF6C9;
   padding: calc(4rem - 30px) 0 0rem 0; }
   @media (min-width: 768px) {
     .hero {
@@ -563,7 +568,7 @@ a {
     .footer-section .subscription-form .form-control {
       height: 50px;
       border-radius: 10px;
-      font-family: "Inter", sans-serif; }
+      font-family: 'League Spartan', sans-serif; }
       .footer-section .subscription-form .form-control:active, .footer-section .subscription-form .form-control:focus {
         outline: none;
         -webkit-box-shadow: none;
@@ -626,7 +631,7 @@ a {
 .form-control {
   height: 50px;
   border-radius: 10px;
-  font-family: "Inter", sans-serif; }
+  font-family: 'League Spartan', sans-serif; }
   .form-control:active, .form-control:focus {
     outline: none;
     -webkit-box-shadow: none;
@@ -708,4 +713,10 @@ textarea {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: rgba(59, 93, 80, 0.2); }
+    background: rgba(59, 93, 80, 0.2);
+
+.smaller-image {
+  width: 100px; /* Set the desired width */
+  height: auto; /* Maintain aspect ratio */
+    }
+  }
