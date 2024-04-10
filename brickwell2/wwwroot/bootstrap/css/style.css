@@ -11,7 +11,7 @@ body {
 
 @font-face {
   font-family: 'League Spartan';
-  src: url('fonts/leaguespartan-bold.woff') format('woff');
+  src: url('../../fonts/LeagueSpartan-VariableFont_wght.ttf') format('truetype');
 }
 
 body {
