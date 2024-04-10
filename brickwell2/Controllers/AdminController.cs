@@ -26,24 +26,9 @@ public class AdminController : Controller
         return View();
     }
 
-    public IActionResult AdminUsers(int pageNum)
+    public IActionResult AdminUsers()
     {
-        int pageSize = 20;
-        var user = new UserPaginationListViewModel
-        {
-            Customers = _repo.Customers
-                .OrderBy(x => x.CustomerId)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
-
-            UserPagination = new UserPagination
-            {
-                CurrentPage = pageNum,
-                UsersPerPage = pageSize,
-                TotalUsers = _repo.Customers.Count()
-            }
-        };
-        return View(user);
+        return View();
     }
     
     [HttpGet]
@@ -56,7 +41,6 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult EditCustomer (Models.Customer customer)
     {
-            _repo.AddCustomer(customer);
             return RedirectToAction("AdminUsers");
     }
     
@@ -72,8 +56,6 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult DeleteCustomer (Models.Customer deleteInfo)
     {
-        _repo.DeleteCustomer(deleteInfo);
-
         return RedirectToAction("AdminUsers");
     }
 }
