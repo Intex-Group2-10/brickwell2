@@ -1,4 +1,4 @@
-@model IQueryable<brickwell2.Models.Customer>
+@model UserPaginationListViewModel
 @{
     Layout = "_AdminLayout";
 }
@@ -23,7 +23,7 @@
         
     </thead>
     
-    @foreach (var x in Model)
+    @foreach (var x in Model.Customers)
     {
         <tbody>
         <tr>
@@ -38,6 +38,6 @@
         </tr>
         </tbody>
     }
-
     
 </table>
+<div page-model="@Model.UserPagination" page-action="AdminUsers"></div>

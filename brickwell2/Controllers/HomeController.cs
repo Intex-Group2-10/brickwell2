@@ -5,7 +5,7 @@ using brickwell2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 
 namespace brickwell2.Controllers
-{
+{ 
     [AllowAnonymous]
     public class HomeController : Controller
     {
