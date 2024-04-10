@@ -15,60 +15,56 @@
     <link rel="shortcut icon" href="~/favicon.ico">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">brickwell2</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">brickwell2</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
             </div>
-        </nav>
-    </header>
-    @* <div class="container"> *@
-        @* <main role="main" class="pb-3"> *@
-           <div>@RenderBody()</div>
-    @*     </main> *@
-    @* </div> *@
-
-    <!-- Start Footer Section -->
-    <footer class="footer">
-        <div style="width: 100%; height: 737px; position: relative">
-            <div style="width: 100%; height: 573px; left: 0px; bottom: 0px; position: absolute; background: #FFF6C9"></div>
-            <img style="width: 100%; left: 0px; bottom: 0px; position: absolute" src="images/legoborder1.png" />
-            <img style="left: 167px; top: 164px; position: absolute" src="images/legoguy2.png" />
-            <img style="width: 599px; height: 188px; left: 745px; top: 205px; position: absolute" src="images/BRICKWELL-4-8-2024.png" />
-            <div style="width: 556px; height: 186px; left: 775px; top: 394px; position: absolute; text-align: right; color: #484848; font-size: 20px; font-weight: 400; line-height: 25px; word-wrap: break-word">At Brickwell, we're more than just a LEGO set store - we're enthusiasts, builders, and dreamers. We curate the latest and most exciting LEGO sets, ensuring that every product we offer sparks creativity and imagination. Whether you're a seasoned builder or just starting, Brickwell is your ultimate destination for all things LEGO.</div>
-            <div style="left: 483px; bottom: 0px; position: absolute; color: black; font-size: 20px;font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">© 2024 Brickwell, Inc.</div>
-            <div style="position: absolute; left: calc(50% - 278px); top: 395px; /* Adjust this value as needed */ text-align: center; color: black; font-size: 20px; font-weight: 700; line-height: 25px; word-wrap: break-word">
-                        <div style="margin-bottom: 5px;">About Us</div>
-                        <div style="margin-bottom: 5px;">Services</div>
-                        <div style="margin-bottom: 5px;">Our Team</div>
-                        <div>Leadership</div>
-                    </div>
-                
-             <div style="width: 121px; left: 757px; bottom: 0px; position: absolute; color: black; font-size: 20px;  font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">Privacy Policy</div>
-            <div style="width: 174px; left: 974px; bottom: 0px; position: absolute; color: black; font-size: 20px; font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">Terms & Conditions</div>
         </div>
-    </footer>
-    
-    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
-    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/bootstrap/js/tiny-slider.js"></script>
-    <script src="~/bootstrap/js/custom.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </nav>
+</header>
+<div>@RenderBody()</div>
+
+<!-- Start Footer Section -->
+<footer class="footer">
+    <div style="width: 100%; height: 737px; position: relative">
+        <div style="width: 100%; height: 573px; left: 0px; bottom: 0px; position: absolute; background: #FFF6C9"></div>
+        <img style="width: 100%; left: 0px; bottom: 0px; position: absolute" src="images/legoborder1.png" />
+        <img style="left: 167px; top: 164px; position: absolute" src="images/legoguy2.png" />
+        <img style="width: 599px; height: 188px; left: 745px; top: 205px; position: absolute" src="images/BRICKWELL-4-8-2024.png" />
+        <div style="width: 556px; height: 186px; left: 775px; top: 394px; position: absolute; text-align: right; color: #484848; font-size: 20px; font-weight: 400; line-height: 25px; word-wrap: break-word">At Brickwell, we're more than just a LEGO set store - we're enthusiasts, builders, and dreamers. We curate the latest and most exciting LEGO sets, ensuring that every product we offer sparks creativity and imagination. Whether you're a seasoned builder or just starting, Brickwell is your ultimate destination for all things LEGO.</div>
+        <div style="left: 483px; bottom: 0px; position: absolute; color: black; font-size: 20px;font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">© 2024 Brickwell, Inc.</div>
+        <div style="position: absolute; left: calc(50% - 278px); top: 395px; /* Adjust this value as needed */ text-align: center; color: black; font-size: 20px; font-weight: 700; line-height: 25px; word-wrap: break-word">
+                    <div style="margin-bottom: 5px;">About Us</div>
+                    <div style="margin-bottom: 5px;">Services</div>
+                    <div style="margin-bottom: 5px;">Our Team</div>
+                    <div>Leadership</div>
+                </div>
+            
+         <div style="width: 121px; left: 757px; bottom: 0px; position: absolute; color: black; font-size: 20px;  font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">Privacy Policy</div>
+        <div style="width: 174px; left: 974px; bottom: 0px; position: absolute; color: black; font-size: 20px; font-weight: 400; line-height: 25px; word-wrap: break-word; z-index: 10">Terms & Conditions</div>
+    </div>
+</footer>
+
+@* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+<script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="~/bootstrap/js/tiny-slider.js"></script>
+<script src="~/bootstrap/js/custom.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
