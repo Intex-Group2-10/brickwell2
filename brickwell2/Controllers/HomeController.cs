@@ -1,9 +1,11 @@
 using brickwell2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace brickwell2.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private ILegoRepository _repo;
