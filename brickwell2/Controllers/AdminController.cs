@@ -21,26 +21,72 @@ public class AdminController : Controller
         return View(viewOrders);
     }
 
-    public IActionResult AdminProducts()
+    public IActionResult AdminProducts(int pageNum)
     {
-        return View();
+        int pageSize = 10;
+        var user = new PaginationListViewModel
+        {
+            Products = _repo.Products
+                .OrderBy(x => x.ProductId)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.Products.Count()
+            }
+        };
+        return View(user);
+    }
+    
+    [HttpGet]
+    public IActionResult EditProduct ()
+    {
+        ViewBag.categories = _repo.Products.ToList();
+        return View("AdminUsers");
+    }
+    
+    [HttpPost]
+    public IActionResult EditProducts (Models.Product product)
+    {
+        _repo.AddProduct(product);
+        return RedirectToAction("AdminUsers");
+    }
+    
+    [HttpGet]
+    public IActionResult DeleteProduct(int id)
+    {
+        var recordToDelete = _repo.Products
+            .Single(x => x.ProductId == id);
+
+        return View(recordToDelete);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteProduct (Models.Customer deleteInfo)
+    {
+        _repo.DeleteCustomer(deleteInfo);
+
+        return RedirectToAction("AdminUsers");
     }
 
     public IActionResult AdminUsers(int pageNum)
     {
-        int pageSize = 20;
-        var user = new UserPaginationListViewModel
+        int pageSize = 10;
+        var user = new PaginationListViewModel
         {
-            Customers = _repo.Customers
-                .OrderBy(x => x.CustomerId)
+            AspNetUsers = _repo.AspNetUsers
+                .OrderBy(x => x.UserId)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
-            UserPagination = new UserPagination
+            PaginationInfo = new PaginationInfo
             {
                 CurrentPage = pageNum,
-                UsersPerPage = pageSize,
-                TotalUsers = _repo.Customers.Count()
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.AspNetUsers.Count()
             }
         };
         return View(user);
