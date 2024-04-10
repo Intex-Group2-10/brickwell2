@@ -28,10 +28,8 @@ public class AdminController : Controller
     public IActionResult AdminUsers()
     {
 
-        ViewBag.Customers = _repo.Customers
-            .OrderBy(x => x.FirstName).ToList();
-        
-        return View("AdminUsers");
+        var customers = _repo.Customers; // Assuming _context is your database context
+        return View(customers);
     }
     
     [HttpGet]
