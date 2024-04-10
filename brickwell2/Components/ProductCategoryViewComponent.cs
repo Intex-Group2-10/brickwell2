@@ -13,10 +13,10 @@ namespace brickwell2.Components
         }
         public IViewComponentResult Invoke()
         {
-            ViewBag.SelectItemType = RouteData?.Values["itemType"];
+            ViewBag.SelectproductCategory = RouteData?.Values["productCategory"];
 
             var productCategories = _legoRepo.Products
-                .Select(x => x.Name)
+                .Select(x => x.Category)
                 .Distinct()
                 .OrderBy(x => x);
 

@@ -36,6 +36,7 @@
                 </li>
                 <li class="nav-item @(Context.Request.Path == "/Home/Cart" ? "active" : "")">
                     <a class="nav-link" href="/Home/Cart"><img src="~/images/legocart.png" style="width: 45px;"> Cart()</a>
+                    <vc:cart-summary/>
                 </li>
                 <li class="nav-item @(Context.Request.Path == "/Identity/Account/Login" ? "active" : "")">
                     <a class="nav-link" asp-area="Identity" asp-page="/Account/Login"><img src="~/images/legohead.png" style="width: 48px;"></a>
