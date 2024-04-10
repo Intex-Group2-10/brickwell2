@@ -19,5 +19,36 @@ namespace brickwell2.Models
 		public IQueryable<Product> Products => _context.Products;
 
 		public IQueryable<User> Users => _context.Users;
+		
+		public void AddOrder(Order order)
+		{
+			_context.Add(order);
+			_context.SaveChanges();
+		}
+		public void EditOrder(Order order)
+		{
+			_context.Update(order);
+			_context.SaveChanges();
+		}
+		public void DeleteOrder(Order order)
+		{
+			_context.Orders.Remove(order);
+			_context.SaveChanges();
+		}
+		public void AddCustomer(Customer customer)
+		{
+			_context.Add(customer);
+			_context.SaveChanges();
+		}
+		public void EditCustomer(Customer customer)
+		{
+			_context.Update(customer);
+			_context.SaveChanges();
+		}
+		public void DeleteCustomer(Customer customer)
+		{
+			_context.Customers.Remove(customer);
+			_context.SaveChanges();
+		}
 	}
 }

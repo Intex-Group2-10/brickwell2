@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace brickwell2.Models;
 
-public partial class Customer
+public partial class Customer : IEnumerable
 {
     public int? CustomerId { get; set; }
 
@@ -16,4 +17,8 @@ public partial class Customer
     public string? CountryOfResidence { get; set; }
 
     public string? Gender { get; set; }
+    public IEnumerator GetEnumerator()
+    {
+        throw new NotImplementedException();
+    }
 }

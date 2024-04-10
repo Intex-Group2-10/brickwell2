@@ -1,3 +1,43 @@
-
+@model IQueryable<brickwell2.Models.Customer>
 @{
+    Layout = "_AdminLayout";
 }
+<div style="width: 100vw; height: 150px; position: relative; background: #FFF6C9; display: flex; justify-content: flex-start; align-items: center; padding-left: 100px;">
+    <h1 style="font-size: 60px;">Users</h1>
+</div>
+
+<!--Make the movie list table and bring in data from the Model-->
+
+<table class="table table-bordered">
+
+    <thead class="fw-bold">
+    <tr>
+        <td>Customer</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Birthdate</td>
+        <td>Country of Residence</td>
+        <td>Gender</td>
+        <td><a class="btn btn-danger" asp-controller="Admin" asp-action="">Add Customer</a></td>
+    </tr>
+        
+    </thead>
+    
+    @foreach (var x in Model)
+    {
+        <tbody>
+        <tr>
+            <td>@x.CustomerId</td>
+            <td>@x.FirstName</td>
+            <td>@x.LastName</td>
+            <td>@x.BirthDate</td>
+            <td>@x.CountryOfResidence</td>
+            <td>@x.Gender</td>
+            <td><a class="btn btn-info" asp-controller="Admin" asp-action="EditCustomer" asp-route-id="@x.CustomerId">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCustomer" asp-route-id="@x.CustomerId">Delete</a></td>
+        </tr>
+        </tbody>
+    }
+
+    
+</table>
