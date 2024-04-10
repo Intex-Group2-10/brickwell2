@@ -34,16 +34,20 @@ a {
     text-decoration: none; }
   a.more {
     font-weight: 600; }
+  
+  .nav-item{
+    font-size: 24px;
+    color: #FEC107;
+  }
+  .nav-link {
+    color: #000;
+    opacity: 100%;
+  }
 
 .custom-navbar {
   background: white !important;
   padding-top: 20px;
   padding-bottom: 20px; }
-  .custom-navbar .navbar-brand {
-    font-size: 32px;
-    font-weight: 600; }
-    .custom-navbar .navbar-brand > span {
-      opacity: .4; }
   .custom-navbar .navbar-toggler {
     border-color: transparent; }
     .custom-navbar .navbar-toggler:active, .custom-navbar .navbar-toggler:focus {
