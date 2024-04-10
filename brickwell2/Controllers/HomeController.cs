@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using brickwell2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.Elfie.Model.Tree;
+using System.Drawing.Printing;
 
 namespace brickwell2.Controllers
 { 
@@ -17,10 +19,8 @@ namespace brickwell2.Controllers
 
         public IActionResult Index()
         {
-            var viewStuff = _repo.Products.ToList();
-            return View(viewStuff);
+            return View();
         }
-
 
         public IActionResult Privacy()
         {
@@ -47,25 +47,27 @@ namespace brickwell2.Controllers
             return View();
         }
         
-        public IActionResult Products()
+        public IActionResult Products(int pageNum, string? productCategory)
         {
-            return View();
-        }
-        public IActionResult Profile()
-        {
-            return View();
-        }
+            int pageSize = 3;
 
-        public IActionResult ContactUs()
-        {
-            return View();
-        }
+            var productObject = new PaginationListViewModel
+            {
+                Products = _repo.Products
+                    .Where(x => x.Category == productCategory || productCategory == null)
+                    .OrderBy(x => x.Name)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
 
+                PaginationInfo = new PaginationInfo
+                {
+                    CurrentPage = pageNum,
+                    ProductsPerPage = pageSize,
+                    TotalProducts = productCategory == null ? _repo.Products.Count() : _repo.Products.Where(x => x.Category == productCategory).Count()
+                },
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            };
+            return View(productObject);
         }
         
     }
