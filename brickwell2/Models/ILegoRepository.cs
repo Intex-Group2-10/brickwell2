@@ -7,5 +7,13 @@
 		public IQueryable<Order> Orders { get; }
 		public IQueryable<Product> Products { get; }
 		public IQueryable<User> Users { get; }
+		
+		public void AddOrder(Order order);
+		public void EditOrder(Order order);
+		public void DeleteOrder(Order order);
+		
+		public void AddCustomer(Customer customer);
+		public void EditCustomer(Customer customer);
+		public void DeleteCustomer(Customer customer);
 	}
 }

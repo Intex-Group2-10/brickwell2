@@ -69,5 +69,6 @@ namespace brickwell2.Controllers
             };
             return View(productObject);
         }
+        
     }
 }
