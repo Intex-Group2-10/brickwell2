@@ -51,6 +51,13 @@ namespace brickwell2.Controllers
         
         public IActionResult Products(int pageNum)
         {
+            return View();
+        }
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
             int pageSize = 3;
 
             var productData = _repo.Products;
