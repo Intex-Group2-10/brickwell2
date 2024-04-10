@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using brickwell2.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.Elfie.Model.Tree;
+using System.Drawing.Printing;
 
 namespace brickwell2.Controllers
 {
@@ -47,15 +49,13 @@ namespace brickwell2.Controllers
             return View();
         }
         
-        public IActionResult Products()
+        public IActionResult Products(int pageNum)
         {
-            return View();
-        }
+            int pageSize = 3;
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var productData = _repo.Products;
+
+            return View(productData);
         }
     }
 }
