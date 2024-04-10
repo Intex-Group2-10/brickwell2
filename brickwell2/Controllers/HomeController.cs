@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Elfie.Model.Tree;
 using System.Drawing.Printing;
 
 namespace brickwell2.Controllers
-{
+{ 
     [AllowAnonymous]
     public class HomeController : Controller
     {

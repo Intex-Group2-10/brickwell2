@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using brickwell2.Models;
 using System;
 using System.Diagnostics;
+using brickwell2.Models.ViewModels;
 
 namespace brickwell2.Controllers;
 
@@ -25,11 +26,24 @@ public class AdminController : Controller
         return View();
     }
 
-    public IActionResult AdminUsers()
+    public IActionResult AdminUsers(int pageNum)
     {
+        int pageSize = 20;
+        var user = new UserPaginationListViewModel
+        {
+            Customers = _repo.Customers
+                .OrderBy(x => x.CustomerId)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
 
-        var customers = _repo.Customers; // Assuming _context is your database context
-        return View(customers);
+            UserPagination = new UserPagination
+            {
+                CurrentPage = pageNum,
+                UsersPerPage = pageSize,
+                TotalUsers = _repo.Customers.Count()
+            }
+        };
+        return View(user);
     }
     
     [HttpGet]
