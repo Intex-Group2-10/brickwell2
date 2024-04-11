@@ -1,29 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
-
-<style>
-    h3 {
-        font-size: 25px; 
-    }
-    p {
-        font-size: 22px; 
-    }
-</style>
-
-<!-- Start Header/Navigation -->
-
 <div style="width: 100vw; height: 506px; position: relative">
   <div style="width: 100%; height: 506px; right: 0px; top: 0px; position: absolute; background: #FFF6C9"></div>
   <div style="width: 160px; height: 47.91px; left: 142px; top: 380px; position: absolute">
-    <div style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; background: #FEC107; border-radius: 15px"></div>
-    <div style="width: 117.70px; height: 31.36px; left: 20px; top: 9px; position: absolute; text-align: center; color: black; font-size: 24px; font-weight: 700; word-wrap: break-word"><a asp-area="" asp-controller="Home" asp-action="Products">Shop Now</a></div>
+      <div style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; background: #FEC107; border-radius: 15px"></div>
+      <div class="button-container" style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; text-align: center; color: black; font-size: 24px; font-weight: 700; word-wrap: break-word"><a asp-area="" asp-controller="Home" asp-action="Products">Shop Now</a></div>
   </div>
   <div style="width: 160px; height: 47.91px; left: 371px; top: 380px; position: absolute">
-    <div style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; background: #FEC107; border-radius: 15px"></div>
-    <div style="left: 20px; top: 9px; position: absolute; text-align: center; color: black; font-size: 24px; font-weight: 700; word-wrap: break-word"><a asp-area="" asp-controller="Home" asp-action="About">Learn More</a></div>
+      <div style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; background: #FEC107; border-radius: 15px"></div>
+      <div class="button-container" style="width: 160px; height: 47.91px; left: 0px; top: 0px; position: absolute; text-align: center; color: black; font-size: 24px; font-weight: 700; word-wrap: break-word"><a asp-area="" asp-controller="Home" asp-action="About">Learn More</a></div>
   </div>
   <div style="width: 574px; height: 220px; left: 130px; top: 63px; position: absolute; color: black; font-size: 105px; font-weight: 600; line-height: 110px; word-wrap: break-word">Welcome to Brickwell</div>
   <div style="width: 446px; height: 67px; left: 130px; top: 298px; position: absolute; color: black; font-size: 24px; font-weight: 400; word-wrap: break-word">Your one stop shop for the best Lego sets on the market!</div>
@@ -36,22 +24,18 @@
 <div class="product-section">
 	<div class="container">
 		<div class="row">
-
 			<!-- Start Column 1 -->
-			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-				<h2 class="mb-4 section-title">Todays top picks</h2><br/>
-				@* <div style="width: 117.70px; height: 31.36px; text-align: center; color: black; font-size: 24px; font-weight: 700; word-wrap: break-word">See More</div> *@
-				@* <div style="width: 160px; height: 47.91px; background: #FEC107; border-radius: 15px"></div> *@
-				<div style="width: 160px; height: 47.91px; background: #FEC107; border-radius: 15px; position: relative; overflow: hidden;">
-                    <a style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; font-weight: 700; white-space: nowrap; text-decoration: none; color: black;" asp-area="" asp-controller="Home" asp-action="Products">See More</a>
+			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding-right: 30px;">
+                <h2 class="mb-4 section-title">Todays top picks</h2><br/>
+                <div style="width: 160px; height: 47.91px; background: #FEC107; border-radius: 15px; position: relative; overflow: hidden;">
+                    <a style="position: absolute; top: 50%; left: 0; transform: translate(0, -50%); font-size: 24px; font-weight: 700; white-space: nowrap; text-decoration: none; color: black; width: 100%; text-align: center;" asp-area="" asp-controller="Home" asp-action="Products">See More</a>
                 </div>
-
-			</div> 
+            </div>
 			<!-- End Column 1 -->
 
 			<!-- Start Column 2 -->
 			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="cart.html">
+				<a class="product-item" asp-controller="Home" asp-action="ProductDetail">
 					<img src="~/images/27_peacock.webp" class="img-fluid product-thumbnail">
 					<h3 class="product-title">Exotic Peacock</h3>
 					<strong class="product-price">$20.00</strong>
@@ -65,7 +49,7 @@
 
 			<!-- Start Column 3 -->
 			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="cart.html">
+				<a class="product-item" asp-controller="Home" asp-action="ProductDetail">
 					<img src="~/images/33_astronaut.webp" class="img-fluid product-thumbnail">
 					<h3 class="product-title">Space Astronaut</h3>
 					<strong class="product-price">$55.00</strong>
@@ -79,7 +63,7 @@
 
 			<!-- Start Column 4 -->
 			<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-				<a class="product-item" href="cart.html">
+				<a class="product-item" asp-controller="Home" asp-action="ProductDetail">
 					<img src="~/images/34_uphouse.webp" class="img-fluid product-thumbnail">
 					<h3 class="product-title">"Up" House</h3>
 					<strong class="product-price">$60.00</strong>
@@ -151,7 +135,7 @@
 
 			<div class="col-lg-5">
 				<div class="img-wrap">
-					<img src="~/images/legosboard1.jpeg" alt="Image" class="img-fluid" style="width: 70%;">
+					<img src="~/images/legosboard1.jpeg" alt="Image" class="img-fluid" style="width: 70%; position: absolute; right: 10;">
 				</div>
 			</div>
 		</div>
