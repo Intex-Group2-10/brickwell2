@@ -48,6 +48,11 @@ namespace brickwell2.Controllers
         {
             return View();
         }
+        
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
 
         public IActionResult Test()
         {

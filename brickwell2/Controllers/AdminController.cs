@@ -45,10 +45,14 @@ public class AdminController : Controller
     }
     
     [HttpGet]
-    public IActionResult EditProduct ()
+    public IActionResult EditProduct (int id)
     {
-        ViewBag.categories = _repo.Products.ToList();
-        return View("AdminUsers");
+        var recordToEdit = _repo.Products
+            .Single(x => x.ProductId == id);
+
+        return View("AdminUsers", recordToEdit);
+        // ViewBag.categories = _repo.Products.ToList();
+        // return View("AdminUsers");
     }
     
     [HttpPost]
@@ -96,29 +100,29 @@ public class AdminController : Controller
     }
     
     [HttpGet]
-    public IActionResult EditCustomer ()
+    public IActionResult EditUser ()
     {
-        ViewBag.categories = _repo.Customers.ToList();
+        ViewBag.users = _repo.Users.ToList();
         return View("AdminUsers");
     }
     
     [HttpPost]
-    public IActionResult EditCustomer (Models.Customer customer)
+    public IActionResult EditCustomer (Models.User user)
     {
             return RedirectToAction("AdminUsers");
     }
     
     [HttpGet]
-    public IActionResult DeleteCustomer(int id)
+    public IActionResult DeleteUser(int id)
     {
-        var recordToDelete = _repo.Customers
-            .Single(x => x.CustomerId == id);
+        var recordToDelete = _repo.Users
+            .Single(x => x.UserId == id);
 
         return View(recordToDelete);
     }
 
     [HttpPost]
-    public IActionResult DeleteCustomer (Models.Customer deleteInfo)
+    public IActionResult DeleteUser (Models.User deleteInfo)
     {
         return RedirectToAction("AdminUsers");
     }
