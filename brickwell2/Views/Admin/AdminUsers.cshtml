@@ -1,4 +1,4 @@
-
+@model PaginationListViewModel
 @{
     Layout = "_AdminLayout";
 }
@@ -12,31 +12,30 @@
 
     <thead class="fw-bold">
     <tr>
-        <td>Customer</td>
-        <td>First Name</td>
-        <td>Last Name</td>
-        <td>Birthdate</td>
-        <td>Country of Residence</td>
-        <td>Gender</td>
-        <td><a class="btn btn-danger" asp-controller="Admin" asp-action="">Add Customer</a></td>
+        <td>User ID</td>
+        <td>Password</td>
+        <td>Email</td>
+        <td>Two Factor Authentication</td>
+        <td>Admin</td>
+        <td><a class="btn btn-danger" asp-controller="Admin" asp-action="">Add User</a></td>
     </tr>
         
     </thead>
     
-    @foreach (var x in Model.Customers)
+    @foreach (var x in Model.AspNetUsers)
     {
         <tbody>
         <tr>
-            <td>@x.CustomerId</td>
-            <td>@x.FirstName</td>
-            <td>@x.LastName</td>
-            <td>@x.BirthDate</td>
-            <td>@x.CountryOfResidence</td>
-            <td>@x.Gender</td>
-            <td><a class="btn btn-info" asp-controller="Admin" asp-action="EditCustomer" asp-route-id="@x.CustomerId">Edit</a></td>
-            <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCustomer" asp-route-id="@x.CustomerId">Delete</a></td>
+            <td>@x.Id</td>
+            <td>@x.UserName</td>
+            <td>@x.Email</td>
+            <td>@x.PasswordHash</td>
+            <td>@x.PhoneNumber</td>
+            <td><a class="btn btn-info" asp-controller="Admin" asp-action="EditCustomer" asp-route-id="@x.Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Admin" asp-action="DeleteCustomer" asp-route-id="@x.Id">Delete</a></td>
         </tr>
         </tbody>
     }
     
 </table>
+<div page-model="@Model.PaginationInfo" page-action="AdminUsers"></div>

@@ -21,14 +21,75 @@ public class AdminController : Controller
         return View(viewOrders);
     }
 
-    public IActionResult AdminProducts()
+    public IActionResult AdminProducts(int pageNum)
     {
-        return View();
+        int pageSize = 10;
+        var user = new PaginationListViewModel
+        {
+            Products = _repo.Products
+                .OrderBy(x => x.ProductId)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.Products.Count()
+            }
+        };
+        return View(user);
+    }
+    
+    [HttpGet]
+    public IActionResult EditProduct ()
+    {
+        ViewBag.categories = _repo.Products.ToList();
+        return View("AdminUsers");
+    }
+    
+    [HttpPost]
+    public IActionResult EditProducts (Models.Product product)
+    {
+        _repo.AddProduct(product);
+        return RedirectToAction("AdminUsers");
+    }
+    
+    [HttpGet]
+    public IActionResult DeleteProduct(int id)
+    {
+        var recordToDelete = _repo.Products
+            .Single(x => x.ProductId == id);
+
+        return View(recordToDelete);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteProduct (Models.Customer deleteInfo)
+    {
+        _repo.DeleteCustomer(deleteInfo);
+
+        return RedirectToAction("AdminUsers");
     }
 
     public IActionResult AdminUsers()
     {
-        return View();
+        int pageSize = 10;
+        var user = new PaginationListViewModel
+        {
+            AspNetUsers = _repo.AspNetUsers
+                .OrderBy(x => x.UserId)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.AspNetUsers.Count()
+            }
+        };
+        return View(user);
     }
     
     [HttpGet]
