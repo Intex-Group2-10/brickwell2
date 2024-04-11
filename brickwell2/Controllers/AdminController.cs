@@ -4,6 +4,7 @@ using brickwell2.Models;
 using System;
 using System.Diagnostics;
 using brickwell2.Models.ViewModels;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 
 namespace brickwell2.Controllers;
 
@@ -64,17 +65,15 @@ public class AdminController : Controller
     {
         var recordToEdit = _repo.Products
             .Single(x => x.ProductId == id);
-
-        return View("AdminUsers", recordToEdit);
-        // ViewBag.categories = _repo.Products.ToList();
-        // return View("AdminUsers");
+        
+        return View(recordToEdit);
     }
     
     [HttpPost]
-    public IActionResult EditProducts (Models.Product product)
+    public IActionResult EditProduct (Product product)
     {
-        _repo.AddProduct(product);
-        return RedirectToAction("AdminUsers");
+        _repo.EditProduct(product);
+        return RedirectToAction("AdminProducts");
     }
     
     [HttpGet]
