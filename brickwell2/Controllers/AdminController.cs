@@ -11,21 +11,16 @@ public class AdminController : Controller
 {
     private ILegoRepository _repo;
     private ILegoSecurityRepository _securityRepo;
-    
-    public AdminController(ILegoRepository legoInfo, ILegoSecurityRepository secureInfo) 
+
+    public AdminController(ILegoRepository legoInfo, ILegoSecurityRepository secureInfo)
     {
         _repo = legoInfo;
         _securityRepo = secureInfo;
     }
-    public IActionResult AdminOrders()
-    {
-        var viewOrders = _repo.Orders.ToList();
-        return View(viewOrders);
-    }
 
     public IActionResult AdminProducts(int pageNum)
     {
-        int pageSize = 10;
+        int pageSize = 2;
         var product = new PaginationListViewModel
         {
             Products = _repo.Products
@@ -41,6 +36,27 @@ public class AdminController : Controller
             }
         };
         return View(product);
+    }
+    
+    public IActionResult AdminOrders(int pageNum)
+    {
+        int pageSize = 150;
+        var order = new PaginationListViewModel
+        {
+            Orders = _repo.Orders
+                .Where(x => x.Fraud == 1)
+                .OrderBy(x => x.TransactionId)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.Orders.Where(x => x.Fraud == 1).Count()
+            }
+        };
+        return View(order);
     }
     
     [HttpGet]
@@ -76,7 +92,7 @@ public class AdminController : Controller
 
     public IActionResult AdminUsers(int pageNum)
     {
-        int pageSize = 10;
+        int pageSize = 20;
         var user = new PaginationListViewModel
         {
             AspNetUsers = _securityRepo.AspNetUsers
