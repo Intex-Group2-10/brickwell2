@@ -17,11 +17,6 @@ public class AdminController : Controller
         _repo = legoInfo;
         _securityRepo = secureInfo;
     }
-    public IActionResult AdminOrders()
-    {
-        var viewOrders = _repo.Orders.ToList();
-        return View(viewOrders);
-    }
 
     public IActionResult AdminProducts(int pageNum)
     {
@@ -41,6 +36,27 @@ public class AdminController : Controller
             }
         };
         return View(product);
+    }
+    
+    public IActionResult AdminOrders(int pageNum)
+    {
+        int pageSize = 150;
+        var order = new PaginationListViewModel
+        {
+            Orders = _repo.Orders
+                .Where(x => x.Fraud == 1) // Filter orders where fraud equals 1
+                .OrderByDescending(x => x.TransactionId) // Order by TransactionId (most recent first)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.Orders.Where(x => x.Fraud == 1).Count() // Count of all orders (including those where fraud != 1)
+            }
+        };
+        return View(order);
     }
     
     [HttpGet]
