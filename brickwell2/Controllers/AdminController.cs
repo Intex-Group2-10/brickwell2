@@ -4,6 +4,7 @@ using brickwell2.Models;
 using System;
 using System.Diagnostics;
 using brickwell2.Models.ViewModels;
+using SQLitePCL;
 
 namespace brickwell2.Controllers;
 
@@ -89,7 +90,7 @@ public class AdminController : Controller
     [HttpPost]
     public IActionResult DeleteProduct (Models.Customer deleteInfo)
     {
-        _repo.DeleteCustomer(deleteInfo);
+        // _repo.DeleteCustomer(deleteInfo);
 
         return RedirectToAction("AdminUsers");
     }
@@ -115,23 +116,27 @@ public class AdminController : Controller
     }
     
     [HttpGet]
-    public IActionResult EditUser ()
+    public IActionResult EditUser (string id)
     {
-        ViewBag.users = _repo.Users.ToList();
-        return View("AdminUsers");
+        var recordToEdit = _securityRepo.AspNetUsers
+            .Single(x => x.Id == id);
+        // ViewBag.users = _repo.Users.ToList();
+        return View(recordToEdit);
     }
     
     [HttpPost]
-    public IActionResult EditCustomer (Models.User user)
+    public IActionResult EditUser(Models.AspNetUser user)
     {
+        _securityRepo.EditUser(user);
+        // _securityRepo.SaveChanges();
             return RedirectToAction("AdminUsers");
     }
     
     [HttpGet]
-    public IActionResult DeleteUser(int id)
+    public IActionResult DeleteUser(string id)
     {
-        var recordToDelete = _repo.Users
-            .Single(x => x.UserId == id);
+        var recordToDelete = _securityRepo.AspNetUsers
+            .Single(x => x.Id == id);
 
         return View(recordToDelete);
     }

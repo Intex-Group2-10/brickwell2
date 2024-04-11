@@ -61,7 +61,7 @@ namespace brickwell2.Controllers
         }
 
         public IActionResult Products(int pageNum, string? productCategory)
-        {
+        { 
             int pageSize = 3;
 
             var productObject = new PaginationListViewModel
