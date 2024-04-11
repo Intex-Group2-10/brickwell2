@@ -17,11 +17,6 @@ public class AdminController : Controller
         _repo = legoInfo;
         _securityRepo = secureInfo;
     }
-    public IActionResult AdminOrders()
-    {
-        var viewOrders = _repo.Orders.ToList();
-        return View(viewOrders);
-    }
 
     public IActionResult AdminProducts(int pageNum)
     {
@@ -43,11 +38,36 @@ public class AdminController : Controller
         return View(product);
     }
     
-    [HttpGet]
-    public IActionResult EditProduct ()
+    public IActionResult AdminOrders(int pageNum)
     {
-        ViewBag.categories = _repo.Products.ToList();
-        return View("AdminUsers");
+        int pageSize = 150;
+        var order = new PaginationListViewModel
+        {
+            Orders = _repo.Orders
+                .Where(x => x.Fraud == 1) // Filter orders where fraud equals 1
+                .OrderByDescending(x => x.TransactionId) // Order by TransactionId (most recent first)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+            PaginationInfo = new PaginationInfo
+            {
+                CurrentPage = pageNum,
+                ProductsPerPage = pageSize,
+                TotalProducts = _repo.Orders.Where(x => x.Fraud == 1).Count() // Count of all orders (including those where fraud != 1)
+            }
+        };
+        return View(order);
+    }
+    
+    [HttpGet]
+    public IActionResult EditProduct (int id)
+    {
+        var recordToEdit = _repo.Products
+            .Single(x => x.ProductId == id);
+
+        return View("AdminUsers", recordToEdit);
+        // ViewBag.categories = _repo.Products.ToList();
+        // return View("AdminUsers");
     }
     
     [HttpPost]
@@ -95,29 +115,29 @@ public class AdminController : Controller
     }
     
     [HttpGet]
-    public IActionResult EditCustomer ()
+    public IActionResult EditUser ()
     {
-        ViewBag.categories = _repo.Customers.ToList();
+        ViewBag.users = _repo.Users.ToList();
         return View("AdminUsers");
     }
     
     [HttpPost]
-    public IActionResult EditCustomer (Models.Customer customer)
+    public IActionResult EditCustomer (Models.User user)
     {
             return RedirectToAction("AdminUsers");
     }
     
     [HttpGet]
-    public IActionResult DeleteCustomer(int id)
+    public IActionResult DeleteUser(int id)
     {
-        var recordToDelete = _repo.Customers
-            .Single(x => x.CustomerId == id);
+        var recordToDelete = _repo.Users
+            .Single(x => x.UserId == id);
 
         return View(recordToDelete);
     }
 
     [HttpPost]
-    public IActionResult DeleteCustomer (Models.Customer deleteInfo)
+    public IActionResult DeleteUser (Models.User deleteInfo)
     {
         return RedirectToAction("AdminUsers");
     }
