@@ -25,6 +25,7 @@ public class AdminController : Controller
 
     public IActionResult AdminProducts(int pageNum)
     {
+        var viewProducts = _repo.Products.ToList();
         int pageSize = 10;
         var product = new PaginationListViewModel
         {
@@ -51,7 +52,7 @@ public class AdminController : Controller
     }
     
     [HttpPost]
-    public IActionResult EditProducts (Models.Product product)
+    public IActionResult EditProduct (Models.Product product)
     {
         _repo.AddProduct(product);
         return RedirectToAction("AdminUsers");
