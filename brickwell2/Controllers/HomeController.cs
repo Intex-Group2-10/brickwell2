@@ -12,9 +12,11 @@ namespace brickwell2.Controllers
     public class HomeController : Controller
     {
         private ILegoRepository _repo;
-        public HomeController(ILegoRepository temp)
+        private ILegoSecurityRepository _securityRepository;
+        public HomeController(ILegoRepository temp, ILegoSecurityRepository securetemp)
         {
             _repo = temp;
+            _securityRepository = securetemp;
         }
 
         public IActionResult Index()
@@ -46,7 +48,13 @@ namespace brickwell2.Controllers
         {
             return View();
         }
-        
+
+        public IActionResult Test()
+        {
+            var viewUsers = _securityRepository.AspNetUsers.ToList();
+            return View(viewUsers);
+        }
+
         public IActionResult Products(int pageNum, string? productCategory)
         {
             int pageSize = 3;

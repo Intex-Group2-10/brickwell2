@@ -10,10 +10,12 @@ namespace brickwell2.Controllers;
 public class AdminController : Controller
 {
     private ILegoRepository _repo;
+    private ILegoSecurityRepository _securityRepo;
     
-    public AdminController(ILegoRepository legoInfo) 
+    public AdminController(ILegoRepository legoInfo, ILegoSecurityRepository secureInfo) 
     {
         _repo = legoInfo;
+        _securityRepo = secureInfo;
     }
     public IActionResult AdminOrders()
     {
@@ -24,7 +26,7 @@ public class AdminController : Controller
     public IActionResult AdminProducts(int pageNum)
     {
         int pageSize = 10;
-        var user = new PaginationListViewModel
+        var product = new PaginationListViewModel
         {
             Products = _repo.Products
                 .OrderBy(x => x.ProductId)
@@ -38,7 +40,7 @@ public class AdminController : Controller
                 TotalProducts = _repo.Products.Count()
             }
         };
-        return View(user);
+        return View(product);
     }
     
     [HttpGet]
@@ -72,13 +74,13 @@ public class AdminController : Controller
         return RedirectToAction("AdminUsers");
     }
 
-    public IActionResult AdminUsers()
+    public IActionResult AdminUsers(int pageNum)
     {
         int pageSize = 10;
         var user = new PaginationListViewModel
         {
-            AspNetUsers = _repo.AspNetUsers
-                .OrderBy(x => x.UserId)
+            AspNetUsers = _securityRepo.AspNetUsers
+                .OrderBy(x => x.UserName)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
@@ -86,7 +88,7 @@ public class AdminController : Controller
             {
                 CurrentPage = pageNum,
                 ProductsPerPage = pageSize,
-                TotalProducts = _repo.AspNetUsers.Count()
+                TotalProducts = _securityRepo.AspNetUsers.Count()
             }
         };
         return View(user);

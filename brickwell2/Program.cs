@@ -26,6 +26,11 @@ builder.Services.AddDbContext<LegoDbContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings:LegoConnection"]);
 });
 
+builder.Services.AddDbContext<LegoSecurityContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:LegoSecurityConnection"]);
+});
+
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
@@ -33,6 +38,9 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 });
 
 builder.Services.AddScoped<ILegoRepository, EFLegoRepository>();
+
+builder.Services.AddScoped<ILegoSecurityRepository, EFLegoSecurityRepository>();
+
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
